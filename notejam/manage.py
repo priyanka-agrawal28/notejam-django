@@ -1,4 +1,4 @@
-#!/usr/bin/virtualenv python2
+#!/usr/bin/env python
 import os
 import sys
 

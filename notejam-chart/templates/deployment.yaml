@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+        name: tekton-app-notejam
+        namespace: priyanka
+        labels: 
+                tier: frontend
+spec:
+        selector:
+                matchLabels:
+                        tier: frontend
+        replicas: 1
+        template:
+                metadata:
+                        labels:
+                                tier: frontend
+                spec:
+                        containers:
+                                - imagePullPolicy: IfNotPresent
+                                  name: notejam
+                                  image: dr.xenon.team/testing/tekton-demo-project:latest
+                                  ports:
+                                          - containerPort: 8000
+                                  command:
+                                          - "/bin/sh"
+                                          - "-c"
+                                          - "python manage.py syncdb && python manage.py migrate && python manage.py runserver 0.0.0.0:8000 "
+                                  livenessProbe:
+                                          httpGet:
+                                                  path: /
+                                                  port: 8000
+                                          initialDelaySeconds: 120
+                                          timeoutSeconds: 2
+                                  readinessProbe:
+                                          httpGet:
+                                                  path: /
+                                                  port: 8000
+                                          initialDelaySeconds: 60
+
+
+

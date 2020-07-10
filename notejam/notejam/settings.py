@@ -10,19 +10,17 @@ ADMINS = (
     ('Sergey Komar', 'komarserjio@gmail.com'),
 )
 
-SOUTH_DATABASE_ADAPTERS = {'default':'south.db.postgresql_psycopg2'}
-
 MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-       'ENGINE': 'django.db.backends.postgresql_psycopg2',
-       'NAME': 'user_db',
-       'USER': 'priyanka',
-       'PASSWORD': 'admin@123',
-       'HOST': 'db',
-       'PORT': '5432',
-   }
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'notejam.db',
+        'USER': '',
+        'PASSWORD': '',
+        'HOST': '',
+        'PORT': '',
+    }
 }
 
 # Local time zone for this installation. Choices can be found here:

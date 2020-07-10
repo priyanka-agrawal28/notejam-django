@@ -17,4 +17,6 @@ COPY requirements.txt .
 
 EXPOSE 8000
 
-RUN pip install -r requirements.txt --trusted-host pypi.org --trusted-host files.pythonhosted.org && pip install psycopg2 --trusted-host pypi.org --trusted-host files.pyhtonhosted.org
+RUN pip install -r requirements.txt && pip install psycopg2
+
+CMD python manage.py syncdb && python manage.py migrate && python manage.py runserver 0.0.0.0:8000
